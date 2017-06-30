@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.joel.crud8215.AddActivity">
+
+    <TextView
+        android:id="@+id/txvId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txvFirstName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:layout_alignStart="@+id/txvFirstName"
+        android:text="ID:" />
+
+    <TextView
+        android:id="@+id/txvFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvId"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp"
+        android:text="First Name"
+        android:gravity="right" />
+
+    <EditText
+        android:id="@+id/edtFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignBaseline="@+id/txvFirstName"
+        android:layout_alignBottom="@+id/txvFirstName"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_toRightOf="@+id/txvFirstName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/txvLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Last Name"
+        android:gravity="right"
+        android:layout_below="@+id/edtFirstName" />
+
+    <EditText
+        android:id="@+id/edtLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignBaseline="@+id/txvLastName"
+        android:layout_alignBottom="@+id/txvLastName"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_toRightOf="@+id/txvLastName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/txvMarks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Marks"
+        android:gravity="right"
+        android:layout_below="@+id/edtLastName"
+        android:layout_alignRight="@+id/txvFirstName"
+        android:layout_alignEnd="@+id/txvFirstName" />
+
+    <EditText
+        android:id="@+id/edtMarks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txvMarks"
+        android:layout_alignBottom="@+id/txvMarks"
+        android:layout_alignEnd="@+id/edtLastName"
+        android:layout_alignLeft="@+id/edtFirstName"
+        android:layout_alignRight="@+id/edtLastName"
+        android:layout_alignStart="@+id/edtFirstName"
+        android:ems="10"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/edtMarks"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/edtMarks"
+        android:layout_marginBottom="17dp"
+        android:text="ADD" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnAdd"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_toLeftOf="@+id/btnAdd"
+        android:layout_toStartOf="@+id/btnAdd"
+        android:text="CANCEL" />
+
+
+</RelativeLayout>

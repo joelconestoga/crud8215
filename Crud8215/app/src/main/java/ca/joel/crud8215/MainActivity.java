@@ -1,9 +1,11 @@
 package ca.joel.crud8215;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,10 +21,15 @@ public class MainActivity extends AppCompatActivity {
 
     StudentAdapter adapter;
 
+    FloatingActionButton flbAdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        flbAdd = (FloatingActionButton) findViewById(R.id.flbAdd);
+        setupButton();
 
         adapter = new StudentAdapter(getApplicationContext(), R.layout.layout_student);
 
@@ -32,6 +39,20 @@ public class MainActivity extends AppCompatActivity {
         adapter.add(new Student(1, "Joel", "Matsu", 96));
         adapter.add(new Student(2, "Joel", "Matsu", 96));
         adapter.add(new Student(3, "Joel", "Matsu", 96));
+
+    }
+
+    private void setupButton() {
+        flbAdd.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                        //intent.putExtra("info", edtInfo.getText().toString());
+                        startActivity(intent);
+                    }
+                }
+        );
     }
 
     class Student {
