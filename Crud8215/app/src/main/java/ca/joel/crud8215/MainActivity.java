@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.add(new Student(3, "Joel", "Matsu", 96));
     }
 
-
     class Student {
         int id;
         String firstName;
