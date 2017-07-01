@@ -1,6 +1,7 @@
 package ca.joel.crud8215;
 
 import android.content.Intent;
+import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.ExpandedMenuView;
@@ -20,6 +21,7 @@ public class AddActivity extends AppCompatActivity {
     EditText edtMark;
     Button btnCancel;
     Button btnAdd;
+    Button btnSave;
     DBHandler db;
 
     @Override
@@ -31,6 +33,8 @@ public class AddActivity extends AppCompatActivity {
 
         setupComponents();
         setupButtons();
+
+        getIncomingData();
     }
 
     private void setupComponents() {
@@ -62,16 +66,63 @@ public class AddActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        btnSave = (Button) findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        updateStudent();
+                        showToast();
+                        goBackToMain();
+                    }
+                }
+        );
+    }
+
+    private void getIncomingData() {
+        Student student = (Student) getIntent().getSerializableExtra("student");
+
+        if (student == null)
+            setupAddingStudent();
+        else
+            setupEditing(student);
+    }
+
+    private void setupAddingStudent() {
+        //btnAdd.setVisibility(View.VISIBLE);
+        btnSave.setVisibility(View.GONE);
+    }
+
+    private void setupEditing(Student student) {
+        //btnAdd.setVisibility(View.GONE);
+        btnSave.setVisibility(View.VISIBLE);
+
+        txvId.setText(String.valueOf(student.getId()));
+        edtFirstName.setText(student.getFirstName());
+        edtLastName.setText(student.getLastName());
+        edtMark.setText(String.valueOf(student.getMark()));
     }
 
     private void saveStudent() {
         String strMark = edtMark.getText().toString();
         Integer mark = "".equals(strMark) ? 0 : Integer.parseInt(strMark);
-        int id = db.insert(new Student(0,
+        int id = db.insert(new Student(
+                0,
                 edtFirstName.getText().toString(),
                 edtLastName.getText().toString(),
                 mark));
         txvId.setText(String.valueOf(id));
+    }
+
+    private void updateStudent() {
+        String strMark = edtMark.getText().toString();
+        Integer mark = "".equals(strMark) ? 0 : Integer.parseInt(strMark);
+        db.update(new Student(
+                Integer.parseInt(txvId.getText().toString()),
+                edtFirstName.getText().toString(),
+                edtLastName.getText().toString(),
+                mark));
     }
 
     private void showToast() {
@@ -79,7 +130,7 @@ public class AddActivity extends AppCompatActivity {
                 "Student " + txvId.getText() + " - " +
                 edtFirstName.getText() + " " +
                 edtLastName.getText() +
-                " created.");
+                " saved.");
     }
 
     private void goBackToMain() {

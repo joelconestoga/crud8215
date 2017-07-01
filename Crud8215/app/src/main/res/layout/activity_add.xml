@@ -123,6 +123,17 @@
         android:text="ADD" />
 
     <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/edtMarks"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/edtMarks"
+        android:layout_marginBottom="17dp"
+        android:visibility="gone"
+        android:text="SAVE" />
+
+    <Button
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -95,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
             Button btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
             btnDelete.setOnClickListener(createDeleteClickFor(student));
 
+            Button btnEdit = (Button) convertView.findViewById(R.id.btnEdit);
+            btnEdit.setOnClickListener(createEditClickFor(student));
+
             return convertView;
         }
 
@@ -112,6 +115,17 @@ public class MainActivity extends AppCompatActivity {
                             student.getFirstName() + " " +
                             student.getLastName() +
                             " deleted.");
+                }
+            };
+        }
+
+        private View.OnClickListener createEditClickFor(final Student student) {
+            return new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                    intent.putExtra("student", student);
+                    startActivity(intent);
                 }
             };
         }

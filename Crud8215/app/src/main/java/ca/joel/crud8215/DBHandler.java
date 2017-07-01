@@ -57,7 +57,8 @@ public class DBHandler extends SQLiteOpenHelper {
         getWritableDatabase().execSQL("UPDATE " + TABLE_STUDENT + " SET " +
                                         COLUMN_FIRSTNAME + "='" + student.getFirstName() + "'," +
                                         COLUMN_LASTNAME + "='" + student.getLastName() + "'," +
-                                        COLUMN_MARK + "=" + student.getLastName() + ";");
+                                        COLUMN_MARK + "=" + student.getMark() + " " +
+                                        "WHERE " + COLUMN_ID + "=" + student.getId());
     }
 
     public List<Student> getAll() {
