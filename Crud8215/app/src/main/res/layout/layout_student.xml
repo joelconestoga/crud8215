@@ -45,12 +45,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/txvName"
-        android:layout_toLeftOf="@+id/button2"
-        android:layout_toStartOf="@+id/button2"
+        android:layout_toLeftOf="@+id/btnDelete"
+        android:layout_toStartOf="@+id/btnDelete"
         android:layout_alignBottom="@+id/txvMark" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnDelete"
         android:text="Delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -6,18 +6,32 @@
     tools:context="ca.joel.crud8215.AddActivity">
 
     <TextView
+        android:id="@+id/txvIdLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_above="@+id/txvFirstName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:textStyle="bold"
+        android:text="ID:"
+        android:gravity="right"
+        android:layout_toLeftOf="@+id/edtLastName"
+        android:layout_toStartOf="@+id/edtLastName" />
+
+    <TextView
         android:id="@+id/txvId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txvFirstName"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@+id/txvIdLabel"
         android:layout_marginTop="18dp"
         android:layout_marginLeft="10dp"
         android:textStyle="bold"
-        android:layout_alignStart="@+id/txvFirstName"
-        android:text="ID:" />
+        android:text="0"
+        android:layout_toEndOf="@+id/txvLastName" />
 
     <TextView
         android:id="@+id/txvFirstName"

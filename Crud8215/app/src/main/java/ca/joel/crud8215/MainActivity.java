@@ -12,37 +12,48 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import static ca.joel.crud8215.DBHandler.DB_FILE;
 
 public class MainActivity extends AppCompatActivity {
 
     StudentAdapter adapter;
-
     FloatingActionButton flbAdd;
+    DBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        flbAdd = (FloatingActionButton) findViewById(R.id.flbAdd);
-        setupButton();
+        db = new DBHandler(this, DB_FILE, null, 1);
 
-        adapter = new StudentAdapter(getApplicationContext(), R.layout.layout_student);
-
-        ListView lsvStudents = (ListView) findViewById(R.id.lsvStudents);
-        lsvStudents.setAdapter(adapter);
-
-        adapter.add(new Student(1, "Joel", "Matsu", 96));
-        adapter.add(new Student(2, "Joel", "Matsu", 96));
-        adapter.add(new Student(3, "Joel", "Matsu", 96));
-
+        setupAddButton();
+        setupListView();
     }
 
-    private void setupButton() {
+    private void setupListView() {
+        adapter = new StudentAdapter(getApplicationContext(), R.layout.layout_student);
+        ListView lsvStudents = (ListView) findViewById(R.id.lsvStudents);
+        lsvStudents.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadAllStudents();
+    }
+
+    private void loadAllStudents() {
+        adapter.clear();
+        adapter.addAll(db.getAll());
+    }
+
+    private void setupAddButton() {
+        flbAdd = (FloatingActionButton) findViewById(R.id.flbAdd);
         flbAdd.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -53,45 +64,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-    }
-
-    class Student {
-        int id;
-        String firstName;
-        String lastName;
-        int mark;
-
-        public Student(int id, String firstName, String lastName, int mark) {
-            this.id = id;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.mark = mark;
-        }
-
-        public int getId() {
-            return id;
-        }
-        public void setId(int id) {
-            this.id = id;
-        }
-        public String getFirstName() {
-            return firstName;
-        }
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
-        public String getLastName() {
-            return lastName;
-        }
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
-        }
-        public int getMark() {
-            return mark;
-        }
-        public void setMark(int mark) {
-            this.mark = mark;
-        }
     }
 
     private class StudentAdapter extends ArrayAdapter<Student> {
@@ -120,7 +92,28 @@ public class MainActivity extends AppCompatActivity {
             TextView txvMark = (TextView) convertView.findViewById(R.id.txvMark);
             txvMark.setText("Marks: " + String.valueOf(student.getMark()));
 
+            Button btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
+            btnDelete.setOnClickListener(createDeleteClickFor(student));
+
             return convertView;
+        }
+
+        private View.OnClickListener createDeleteClickFor(final Student student) {
+            return new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    db.delete(student);
+                    showToast();
+                    loadAllStudents();
+                }
+
+                private void showToast() {
+                    MyToast.toast(getContext(), "Student " + student.getId() + " - " +
+                            student.getFirstName() + " " +
+                            student.getLastName() +
+                            " deleted.");
+                }
+            };
         }
     }
 
