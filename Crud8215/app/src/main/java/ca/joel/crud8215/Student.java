@@ -2,6 +2,7 @@ package ca.joel.crud8215;
 
 import java.io.Serializable;
 
+//Student class with only getters/setters
 public class Student implements Serializable{
 
     private int id;
@@ -25,19 +26,10 @@ public class Student implements Serializable{
     public String getFirstName() {
         return firstName;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
     public String getLastName() {
         return lastName;
     }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
     public int getMark() {
         return mark;
-    }
-    public void setMark(int mark) {
-        this.mark = mark;
     }
 }
